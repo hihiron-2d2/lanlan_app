@@ -18,9 +18,6 @@ class EditCardPage extends StatelessWidget {
           backgroundColor: const Color(0xFFFAD5A6),
           title: const Text(
             "Edit Page",
-            style: TextStyle(
-              fontSize: 25,
-            ),
           ),
         ),
         body: Center(

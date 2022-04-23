@@ -52,14 +52,14 @@ class FolderHomePage extends StatelessWidget {
                           if (title != null){
                             final snackBar = SnackBar(
                               behavior: SnackBarBehavior.floating,
-                              backgroundColor: Colors.lightGreen,
+                              backgroundColor: const Color(0xFF8fbc8f),
                               content: Text('Edited $title'),
                             );
                             model.fetchFolderList();
                             ScaffoldMessenger.of(context).showSnackBar(snackBar);
                           }
                         },
-                        backgroundColor: const Color(0xFF7BC043),
+                        backgroundColor: const Color(0xFF8fbc8f),
                         foregroundColor: Colors .white,
                         icon: Icons.edit,
                         label: 'Edit',
@@ -68,7 +68,7 @@ class FolderHomePage extends StatelessWidget {
                         onPressed: (context) async {
                           await showDeleteDialog(context, folder, model);
                         },
-                        backgroundColor: const Color(0xFFff4500),
+                        backgroundColor: const Color(0xFFf08080),
                         foregroundColor: Colors.white,
                         icon: Icons.delete,
                         label: 'Delete',
@@ -161,7 +161,7 @@ class FolderHomePage extends StatelessWidget {
                   await model.delete(folder);
                   Navigator.pop(context);
                   final snackBar = SnackBar(
-                    backgroundColor: Colors.redAccent,
+                    backgroundColor: const Color(0xFFf08080),
                     content: Text('Deleted ${folder.title}'),
                   );
                   model.fetchFolderList();

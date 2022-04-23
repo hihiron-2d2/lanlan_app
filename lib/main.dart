@@ -2,14 +2,14 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lanlan_app/folder/folder_home_page.dart';
 import 'package:simple_logger/simple_logger.dart';
-//import 'firebase_options.dart';
+import 'firebase_options.dart';
 
 final logger = SimpleLogger();
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-    //options: DefaultFirebaseOptions.currentPlatform,
+    options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
 }

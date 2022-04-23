@@ -13,19 +13,10 @@ class EditFolderPage extends StatelessWidget {
     return ChangeNotifierProvider<EditFolderModel>(
       create: (_) => EditFolderModel(folder),
       child: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: const Size.fromHeight(80),
-          child: AppBar(
-            backgroundColor: const Color(0xFFFAD5A6),
-            title: Container(
-                margin: const EdgeInsets.only(top:20, left:5),
-                child: const Text(
-
-                  "Edit Page",
-                  style: TextStyle(
-                    fontSize: 25,
-                  ),
-                )),
+        appBar: AppBar(
+          backgroundColor: const Color(0xFFFAD5A6),
+          title: const Text(
+            "Edit Page",
           ),
         ),
         body: Center(

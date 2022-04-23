@@ -59,7 +59,7 @@ class CardListModel extends ChangeNotifier{
   }
 
   Future delete({required String? id,required Flipcard flipcard}) {
-    logger.info('おっぱい$id');
+    logger.info('apple$id');
     logger.info(flipcard.id);
     return folderRef.doc(id).collection('flipcards').doc(flipcard.id).delete();
   }
