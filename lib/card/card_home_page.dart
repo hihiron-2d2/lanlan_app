@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:flutter_tts/flutter_tts.dart';
 import 'package:lanlan_app/card/card_add_page.dart';
 import 'package:lanlan_app/card/card_edit_page.dart';
 import 'package:lanlan_app/card/card_home_model.dart';
@@ -14,13 +15,35 @@ import '../main.dart';
 // ignore: must_be_immutable
 class CardHomePage extends StatelessWidget {
   String? id;
+  CardHomePage({Key? key, required this.id,}) : super(key: key,);
 
-  CardHomePage({
-    Key? key,
-    required this.id,
-  }) : super(
-          key: key,
-        );
+  final FlutterTts flutterTts = FlutterTts();
+
+  final double volume = 0.5;
+  final double pitch = 1.0;
+  final double rate = 0.5;
+
+  //①マイクのボタンを押す
+  //②_speakメソッドを呼び出す(speechTextの引数にflipcard.frontWordを入れる)
+  //③speechメソッドの実行
+  //④メソッドの中でflipcard.frontWordが使用される
+  Future <void> _speak({required String? speechText}) async {
+    await flutterTts.setVolume(volume);
+    await flutterTts.setSpeechRate(rate);
+    await flutterTts.setPitch(pitch);
+
+    if (speechText != null) {
+      if (speechText.isNotEmpty) {
+        await flutterTts.speak(speechText);
+      }
+    }
+  }
+
+  speak(String text) async {
+    await flutterTts.setLanguage("en-US");
+    await flutterTts.setPitch(1);
+    await flutterTts.speak(text);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -137,80 +160,41 @@ class CardHomePage extends StatelessWidget {
                           onFlipDone: (status) {
                             //print(status);
                           },
-                          front: 
-                          // Container(
-                          //   height: 180,
-                          //   width: 350,
-                          //   decoration: const BoxDecoration(
-                          //     color: Color(0xFFDAE9E4),
-                          //     borderRadius:
-                          //         BorderRadius.all(Radius.circular(12.0)),
-                          //   ),
-                          //   child: Row(
-                          //     mainAxisAlignment: MainAxisAlignment.center,
-                          //     children: [
-                          //       FloatingActionButton(
-                          //         onPressed: () async {
-                          //           //画面遷移
-                          //           await Navigator.push(
-                          //             context,
-                          //             MaterialPageRoute(
-                          //               builder: (context) => AddCardPage(id: id),
-                          //               fullscreenDialog: true,
-                          //             ),
-                          //           );
-                          //         },
-                          //         tooltip: 'Voice',
-                          //         backgroundColor: const Color(0xFFb0e0e6),
-                          //         child: const Icon(Icons.settings_voice_rounded),
-                          //       ),
-                          //       const SizedBox(width: 50),
-                          //       Column(
-                          //         mainAxisAlignment: MainAxisAlignment.center,
-                          //         children: <Widget>[
-                          //           Text(
-                          //             flipcard.frontWord ?? 'no card',
-                          //             style: const TextStyle(
-                          //               fontWeight: FontWeight.bold,
-                          //               fontSize: 20,
-                          //             ),
-                          //           ),
-                          //         ],
-                          //       ),
-                          //     ],
-                          //   ),
-                          //   ),
-                          Stack(
-                            children: [
-                              Column(
-mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                               Container(color : Colors.red,child: const Text('テキスト'),),
-                              ],
-                              ),
-                              Column(children : [
-                                Expanded(child : Container(color: Colors.blue)),
-                                Padding(padding : const EdgeInsets.only(left : 10,bottom : 10),child :Row(children : [
-                                  FloatingActionButton(
-                                  onPressed: () async {
-                                    //画面遷移
-                                    await Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => AddCardPage(id: id),
-                                        fullscreenDialog: true,
+                          front: Container(
+                            height: 180,
+                            width: 350,
+                            decoration: const BoxDecoration(
+                              color: Color(0xFFDAE9E4),
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(12.0)),
+                            ),
+                            child: Stack(
+                              alignment: Alignment.center,
+                                  children: <Widget>[
+                                    SingleChildScrollView(
+                                      child: Text(
+                                       flipcard.frontWord ?? 'no card',
+                                       style: const TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20,
+                                       ),
                                       ),
-                                    );
-                                  },
-                                  tooltip: 'Voice',
-                                  backgroundColor: const Color(0xFFb0e0e6),
-                                  child: const Icon(Icons.settings_voice_rounded),
+                                    ),
+                                    Positioned(
+                                      left: 15,
+                                      bottom: 13,
+                                      child: FloatingActionButton(
+                                        onPressed: () async {
+                                          await _speak(speechText: flipcard.frontWord);
+                                        },
+                                        tooltip: 'Voice',
+                                        backgroundColor: const Color(0xFFb0e0e6),
+                                        child: const Icon(Icons.settings_voice_rounded),
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Expanded(child : Container(color : Colors.yellow)),
-                                ]),),
-                              ]),
-                            ],
-                          ),
+                             ),
                           back: Container(
                             height: 180,
                             width: 350,

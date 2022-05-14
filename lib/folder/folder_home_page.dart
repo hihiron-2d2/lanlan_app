@@ -6,6 +6,7 @@ import 'package:lanlan_app/domain/folder.dart';
 import 'package:lanlan_app/folder/folder_add_page.dart';
 import 'package:lanlan_app/folder/folder_edit_page.dart';
 import 'package:lanlan_app/folder/folder_home_model.dart';
+import 'package:lanlan_app/login/login_page.dart';
 import 'package:lanlan_app/main.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,21 @@ class FolderHomePage extends StatelessWidget {
               style: TextStyle(
                 fontSize: 20,
               ),
-            )),
+            ),
+            actions: [
+              IconButton(
+              onPressed: () async {
+                //画面遷移
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage(),
+                    fullscreenDialog: true,
+                  ),
+                );
+              },
+                icon: const Icon(Icons.person),),
+            ],
+        ),
         body: SingleChildScrollView(
           child: Center(
             child: Consumer<FolderListModel>(builder: (context, model, child) { ///modelの後にこのコードが読まれる

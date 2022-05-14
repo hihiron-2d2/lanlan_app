@@ -45,6 +45,7 @@ dependencies:
   flutter_launcher_icons: ^0.9.2
   flutter_native_splash: ^2.1.5
   flutter_tts: ^3.3.3
+  firebase_auth: ^3.3.15
 
 flutter_icons:
   git:
@@ -77,7 +78,8 @@ flutter:
   uses-material-design: true
 
 flutter_native_splash:
-  background_image: "assets/images/icon.png"
+  color: "#ffffff"
+  background_image: "assets/images/splash_icon.png"
   fullscreen: true
 
   # To add assets to your application, add an assets section, like this:
