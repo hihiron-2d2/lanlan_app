@@ -51,8 +51,8 @@ class LoginPage extends StatelessWidget {
                   onPressed: ()  async {
                     //追加の処理
                     try {
-                      await model.signUp();
-                      //Navigator.of(context).pop(model.title);
+                      await model.login();
+                      Navigator.of(context).pop();
                     } catch (e){
                       final snackBar = SnackBar(
                         backgroundColor: Colors.amber,

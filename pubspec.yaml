@@ -78,9 +78,8 @@ flutter:
   uses-material-design: true
 
 flutter_native_splash:
-  color: "#ffffff"
   background_image: "assets/images/splash_icon.png"
-  fullscreen: true
+  fullscreen: false
 
   # To add assets to your application, add an assets section, like this:
   # assets:

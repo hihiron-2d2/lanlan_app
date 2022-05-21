@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lanlan_app/domain/folder.dart';
-import 'package:lanlan_app/folder/folder_edit_model.dart';
 import 'package:lanlan_app/register/register_model.dart';
 import 'package:provider/provider.dart';
 
