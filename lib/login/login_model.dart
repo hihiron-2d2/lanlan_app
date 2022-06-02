@@ -1,7 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:lanlan_app/domain/folder.dart';
 
 class LoginModel extends ChangeNotifier {
   final emailController = TextEditingController();

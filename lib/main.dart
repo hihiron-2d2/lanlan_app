@@ -26,6 +26,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.orange,
       ),
       home: const FolderHomePage(),
+      supportedLocales: const [
+      Locale('en'),
+      ],
     );
   }
 }

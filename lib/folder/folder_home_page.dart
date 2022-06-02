@@ -1,3 +1,5 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter/cupertino.dart';
@@ -30,12 +32,23 @@ class FolderHomePage extends StatelessWidget {
               IconButton(
               onPressed: () async {
                 //画面遷移
-                await Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LoginPage(),
-                    fullscreenDialog: true,
-                  ),
-                );
+                if (FirebaseAuth.instance.currentUser != null) {
+                  print('ログインしている');
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage(),
+                      fullscreenDialog: true,
+                    ),
+                  );
+                } else {
+                  print('ログインしていない');
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LoginPage(),
+                      fullscreenDialog: true,
+                    ),
+                  );
+                }
               },
                 icon: const Icon(Icons.person),),
             ],

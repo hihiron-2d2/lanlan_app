@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lanlan_app/domain/folder.dart';
-import 'package:lanlan_app/folder/folder_edit_model.dart';
 import 'package:lanlan_app/login/login_model.dart';
-import 'package:lanlan_app/register/register_model.dart';
 import 'package:lanlan_app/register/register_page.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<LoginModel>(
@@ -43,6 +42,7 @@ class LoginPage extends StatelessWidget {
                   onChanged: (text) {
                     model.setPassword(text);
                   },
+                  obscureText: true,
                 ),
                 const SizedBox(
                   height: 16,
@@ -69,7 +69,7 @@ class LoginPage extends StatelessWidget {
                     //画面遷移
                     await Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => RegisterPage(),
+                      MaterialPageRoute(builder: (context) => const RegisterPage(),
                         fullscreenDialog: true,
                       ),
                     );

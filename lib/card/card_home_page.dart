@@ -19,9 +19,9 @@ class CardHomePage extends StatelessWidget {
 
   final FlutterTts flutterTts = FlutterTts();
 
-  final double volume = 0.5;
+  final double volume = 2.0;
   final double pitch = 1.0;
-  final double rate = 0.5;
+  final double rate = 0.6;
 
   //①マイクのボタンを押す
   //②_speakメソッドを呼び出す(speechTextの引数にflipcard.frontWordを入れる)
@@ -41,6 +41,7 @@ class CardHomePage extends StatelessWidget {
 
   speak(String text) async {
     await flutterTts.setLanguage("en-US");
+    await flutterTts.isLanguageAvailable("en-US");
     await flutterTts.setPitch(1);
     await flutterTts.speak(text);
   }
@@ -183,13 +184,14 @@ class CardHomePage extends StatelessWidget {
                                     Positioned(
                                       left: 15,
                                       bottom: 13,
-                                      child: FloatingActionButton(
+                                      child: IconButton(
                                         onPressed: () async {
                                           await _speak(speechText: flipcard.frontWord);
                                         },
                                         tooltip: 'Voice',
-                                        backgroundColor: const Color(0xFFb0e0e6),
-                                        child: const Icon(Icons.settings_voice_rounded),
+                                        //backgroundColor: const Color(0xFFb0e0e6),
+                                        icon: const Icon(Icons.settings_voice_rounded),
+                                        highlightColor: Colors.pink,
                                       ),
                                     ),
                                   ],
@@ -259,6 +261,7 @@ class CardHomePage extends StatelessWidget {
             tooltip: 'Increment',
             backgroundColor: const Color(0xFFFAD5A6),
             child: const Icon(Icons.add),
+            heroTag: "btn2",
           );
         }),
       ),
